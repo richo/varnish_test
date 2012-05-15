@@ -1,6 +1,4 @@
-require 'test/unit'
 require File.expand_path("../../test_helper", __FILE__)
-require 'net/http'
 class HelloWorldTest < Test::Unit::TestCase
   def test_it_says_hello_world
     q = SingletonQueue.get
