@@ -13,4 +13,13 @@ Content-Length: #{body.length}
 #{body}
     HTTP
   end
+
+  def get(path, hdr, &block)
+    @paths << [path, hdr, block]
+  end
+
+  def paths
+    @paths ||= Array.new
+  end
+
 end

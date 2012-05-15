@@ -1,8 +1,11 @@
 require File.expand_path("../../test_helper", __FILE__)
 class ImaTeapotTest < Test::Unit::TestCase
   def test_it_is_a_teapot
-    q = SingletonQueue.get
-    q.enq(httpinate("I'm a teapot, yo", 418))
+    response_queue 418, {}, "I'm a teapot, yo"
+
+    get '/hello', {} do |resp, backend|
+
+    end
 
     url = URI.parse('http://localhost:6868/hello')
     req = Net::HTTP::Get.new(url.path)
