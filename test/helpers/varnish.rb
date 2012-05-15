@@ -1,7 +1,12 @@
+STATUSES = {
+  200 => "OK",
+  418 => "I'm a teapot"
+}
+
 class Test::Unit::TestCase
-  def httpinate(body)
+  def httpinate(body, status=200)
     return <<-HTTP
-HTTP/1.0 200 OK
+HTTP/1.0 #{status} #{STATUSES[status]}
 Content-Type: text/html
 Content-Length: #{body.length}
 

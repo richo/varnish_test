@@ -47,7 +47,7 @@ private
         de_q.enq(lines.join("\r\n"))
 
         # XXX Doesn't complain if nothing is queued
-        client.puts(in_q.deq(non_block=false))
+        client.puts(in_q.deq)
 
         client.close
       end
@@ -57,4 +57,4 @@ private
 end
 
 # Seed the queue by giving it a port
-queue = SingletonQueue.new(port: 2000)
+SingletonQueue.new(port: 2000)
