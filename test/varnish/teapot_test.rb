@@ -8,7 +8,6 @@ class ImaTeapotTest < Test::Unit::TestCase
 
     assert_equal res.body, "I'm a teapot, yo"
     assert_equal res.code.to_i, 418
-
   end
 end
 
