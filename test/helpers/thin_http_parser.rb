@@ -4,7 +4,7 @@
 
 require 'rubygems'
 # Uncomment this line if 'thin_parser' is not found
-# require 'thin'
+require 'thin'
 require 'thin_parser'
 require 'stringio'
 
