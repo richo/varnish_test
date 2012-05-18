@@ -57,9 +57,12 @@ private
           # XXX Hack around missing CONTENT_LENGTH in parser.env
           if parser.env['CONTENT_LENGTH'].nil? && line =~ /^Content-Length: (\d+)/
             parser.env['CONTENT_LENGTH'] = $1.to_i
+          elsif line =~ /(\S+): (.*)/
+            parser.env[$1.upcase] = $2.chomp
           end
           lines << line
         end
+
 
         parser.parse(lines.join("\r\n"))
 
