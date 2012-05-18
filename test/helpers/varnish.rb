@@ -4,6 +4,10 @@ STATUSES = {
 }
 
 class Test::Unit::TestCase
+  def q
+    SingletonQueue.get
+  end
+
   def httpinate(body, status=200)
     return <<-HTTP
 HTTP/1.0 #{status} #{STATUSES[status]}

@@ -1,7 +1,6 @@
 require File.expand_path("../../test_helper", __FILE__)
 class HelloWorldTest < Test::Unit::TestCase
   def test_it_says_hello_world
-    q = SingletonQueue.get
     q.enq(httpinate("hello world"))
 
     url = URI.parse('http://localhost:6868/hello')
