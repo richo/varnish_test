@@ -1,5 +1,5 @@
 
-class Test::Unit::TestCase
+class ProxyTest::TestCase < Test::Unit::TestCase
   def q
     SingletonQueue.get
   end
