@@ -1,28 +1,28 @@
-STATUSES = {
-  200 => "OK",
-  418 => "I'm a teapot"
-}
 
 class Test::Unit::TestCase
   def q
     SingletonQueue.get
   end
 
-  def expect(method, path, body, headers = {}, &block)
+  def expect(method, path, &block)
+    # Create stub objects for the response and the request
+    url = URI.parse('http://localhost:6868')
+    mock_req = requester(method).new(path)
+    mock_res = ::VarnishTest::Response.new
+
+    yield(mock_res, mock_req)
 
     # Pass the response into the http server
-    q.enq(httpinate(body))
+    q.enq(mock_res.to_http)
 
     # TODO Configurable port
-    url = URI.parse('http://localhost:6868')
-    req = requester(method).new(path)
-    res = Net::HTTP.start(url.host,url.port) do |http|
-      http.request(req)
+    real_res = Net::HTTP.start(url.host,url.port) do |http|
+      http.request(mock_req)
     end
 
-    req = q.deq
+    real_req = q.deq
 
-    block.call(res, req)
+    [real_res, real_req]
   end
 
   def requester(sym)
@@ -40,15 +40,6 @@ class Test::Unit::TestCase
     end
   end
 
-  def httpinate(body, status=200)
-    return <<-HTTP
-HTTP/1.0 #{status} #{STATUSES[status]}
-Content-Type: text/html
-Content-Length: #{body.length}
-
-#{body}
-    HTTP
-  end
 
   def get(path, hdr, &block)
     @paths << [path, hdr, block]
