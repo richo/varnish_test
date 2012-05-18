@@ -1,15 +1,10 @@
 require File.expand_path("../../test_helper", __FILE__)
 class HelloWorldTest < Test::Unit::TestCase
   def test_it_says_hello_world
-    q.enq(httpinate("hello world"))
-
-    url = URI.parse('http://localhost:6868/hello')
-    req = Net::HTTP::Get.new(url.path)
-
-    res = Net::HTTP.start(url.host,url.port) do |http|
-      http.request(req)
+    expect :get, "/hello", "body goes here", { "X-Someheader" => "value" } do |response, request|
+      # Assertions about response go here
+      assert_equal response.body, "body goes here"
+      assert_equal request.env["REQUEST_METHOD"], "GET"
     end
-
-    assert_equal res.body, "hello world"
   end
 end
