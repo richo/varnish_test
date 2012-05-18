@@ -2,7 +2,7 @@
 # http://www.franzens.org/2011/10/writing-minimalistic-web-server-using.html
 # Copyright 2011 Nils Franzén
 
-require 'rubygems'
+module ProxyTest
 # Uncomment this line if 'thin_parser' is not found
 require 'thin'
 require 'thin_parser'
@@ -89,4 +89,5 @@ class RequestParser
       @env[CONNECTION].nil? || @env[CONNECTION] !~ CLOSE_REGEXP
     end
   end
+end
 end

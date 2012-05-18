@@ -1,14 +1,14 @@
 
 class ProxyTest::TestCase < Test::Unit::TestCase
   def q
-    SingletonQueue.get
+    ::ProxyTest::SingletonQueue.get
   end
 
   def expect(method, path, &block)
     # Create stub objects for the response and the request
     url = URI.parse('http://localhost:6868')
     mock_req = requester(method).new(path)
-    mock_res = ::VarnishTest::Response.new
+    mock_res = ::ProxyTest::Response.new
 
     yield(mock_res, mock_req)
 

@@ -1,4 +1,4 @@
-module VarnishTest
+module ProxyTest
   STATUSES = {
     200 => "OK",
     418 => "I'm a teapot"

@@ -5,6 +5,7 @@ require 'thread'
 require 'socket'
 require File.expand_path("../thin_http_parser", __FILE__)
 
+module ProxyTest
 class SingletonQueue
 
   def self.new(*args)
@@ -46,7 +47,7 @@ private
       serv = TCPServer.new port
       loop do
         # Create a parser object
-        parser = RequestParser.new
+        parser = ::ProxyTest::RequestParser.new
 
         # Pop a connection off the stack
         client = serv.accept
@@ -82,4 +83,5 @@ private
     end
   end
 
+end
 end
