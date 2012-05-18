@@ -7,3 +7,9 @@ Rake::TestTask.new("test") { |t|
   t.verbose = true
   t.warning = true
 }
+
+desc "Start the singletonqueue server"
+task :serve do
+  require './test/helpers/backend'
+  SingletonQueue.get.join!
+end

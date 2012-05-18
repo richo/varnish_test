@@ -34,10 +34,14 @@ class SingletonQueue
     out_q.deq
   end
 
+  def join!
+    @thread.join
+  end
+
 private
 
   def spawn_reader(port)
-    Thread.new(in_q, out_q) do |en_q, de_q|
+    @thread = Thread.new(in_q, out_q) do |en_q, de_q|
       serv = TCPServer.new port
       loop do
         # Create a parser object
