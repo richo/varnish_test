@@ -1,5 +1,5 @@
 require File.expand_path("../../test_helper", __FILE__)
-class ImaTeapotTest < Test::Unit::TestCase
+class ImaTeapotTest < ProxyTest::TestCase
   def test_it_is_a_teapot
     res, req = expect :get, "/teapot" do |response, request|
       response.status = 418
