@@ -6,7 +6,7 @@ class ProxyTest::TestCase < Test::Unit::TestCase
 
   def expect(method, path, &block)
     # Create stub objects for the response and the request
-    url = URI.parse('http://localhost:6868')
+    url = URI.parse("http://#{::ProxyTest::Config.proxy_host}:#{::ProxyTest::Config.proxy_port}")
     mock_req = requester(method).new(path)
     mock_res = ::ProxyTest::Response.new
 

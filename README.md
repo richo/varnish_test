@@ -5,7 +5,7 @@ Test driven varnish ftw yo.
 ```ruby
 
 # Sample Rakefile
-ProxyTest::Config do |conf|
+ProxyTest::config do |conf|
   conf.backend_port = 2000
   conf.proxy_port   = 6868
 

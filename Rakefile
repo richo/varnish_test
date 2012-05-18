@@ -1,5 +1,6 @@
 require 'rake'
 require 'rake/testtask'
+require 'rspec/core/rake_task'
 
 desc "Run basic tests"
 Rake::TestTask.new("test") { |t|
@@ -15,4 +16,8 @@ task :serve do
   loop do
     q.enq("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n")
   end
+end
+
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.pattern = "spec/**/*_spec.rb"
 end

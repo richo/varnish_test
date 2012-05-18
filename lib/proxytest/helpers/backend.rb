@@ -23,7 +23,7 @@ class SingletonQueue
   def initialize(opts={})
     @in_q  = Queue.new
     @out_q = Queue.new
-    opts[:port] ||= (ENV["BACKEND_PORT"] || 2000).to_i
+    opts[:port] ||= ::ProxyTest::Config.backend_port
     spawn_reader(opts[:port])
   end
   attr_reader :in_q, :out_q
