@@ -66,7 +66,12 @@ private
           parser.parse(client.gets(parser.content_length))
         end
 
+        # Send the request object back to the caller
         de_q.enq(parser)
+
+        # Fetch the response object from the caller
+        response = en_q.deq
+        client.write(response.to_s)
 
         client.close
       end
