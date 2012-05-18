@@ -15,13 +15,20 @@ module VarnishTest
     end
 
     def to_http
-      return <<-HTTP
+      h1 =  <<-HTTP
 HTTP/1.0 #{status} #{STATUSES[status]}
 Content-Type: text/html
 Content-Length: #{body.length}
+HTTP
+      headers.each do |k, v|
+        h1 += "#{k}: #{v}\r\n"
+      end
+
+      h1 += <<-HTTP
 
 #{body}
 HTTP
+      return h1
     end
 
     # Hack to make it look like a Net::HTTP entity

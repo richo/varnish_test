@@ -14,6 +14,8 @@ class HelloWorldTest < Test::Unit::TestCase
     # Assertions about response go here
     #
     assert_equal res.body, "body goes here"
+    assert_equal res["X-SOMEHEADER"], "value"
     assert_equal req.env["REQUEST_METHOD"], "GET"
+    assert_equal req.env["X-SOMEOTHERHEADER"], "thing"
   end
 end
