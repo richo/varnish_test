@@ -2,9 +2,9 @@ require 'rake'
 require 'rake/testtask'
 require 'rspec/core/rake_task'
 
-desc "Run basic tests"
-Rake::TestTask.new("test") { |t|
-  t.pattern = 'test/**/*_test.rb'
+desc "Run the example suite"
+Rake::TestTask.new("examples") { |t|
+  t.pattern = 'examples/**/*_test.rb'
   t.verbose = true
   t.warning = true
 }
