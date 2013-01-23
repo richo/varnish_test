@@ -1,4 +1,4 @@
-require File.expand_path("../../test_helper", __FILE__)
+require File.expand_path("../test_helper", __FILE__)
 class HelloWorldTest < ProxyTest::TestCase
   def test_it_says_hello_world
     # Returns the real objects from the transaction
