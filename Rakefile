@@ -1,6 +1,7 @@
 require 'rake'
 require 'rake/testtask'
 require 'rspec/core/rake_task'
+require 'proxytest'
 
 desc "Run the example suite"
 Rake::TestTask.new("examples") { |t|
@@ -11,8 +12,7 @@ Rake::TestTask.new("examples") { |t|
 
 desc "Start the singletonqueue server"
 task :serve do
-  require './test/helpers/backend'
-  q = SingletonQueue.new
+  q = ::ProxyTest::SingletonQueue.new
   loop do
     q.enq("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n")
   end
